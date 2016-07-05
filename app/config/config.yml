@@ -79,6 +79,19 @@ assetic:
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
 
+liip_imagine:
+    filter_sets:
+        penguin_thumb:
+            quality: 75
+            filters:
+                thumbnail:
+                    size: [ 1024, 768 ]
+                    mode: outbound
+                watermark:
+                    image:    Resources/images/watermark.png
+                    size:     0.3
+                    position: bottomleft
+
 vich_uploader:
     db_driver: orm
     mappings:

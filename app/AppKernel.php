@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Third party
+            new \Liip\ImagineBundle\LiipImagineBundle(),
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new \Vich\UploaderBundle\VichUploaderBundle(),
             // App

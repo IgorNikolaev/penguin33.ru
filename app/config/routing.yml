@@ -1,2 +1,7 @@
+# Third party
+liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+# App
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
