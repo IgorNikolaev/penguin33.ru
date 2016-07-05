@@ -1,0 +1,2 @@
+app_import_homepage:
+    resource: "@AppBundle/Resources/config/routing/homepage.yml"
