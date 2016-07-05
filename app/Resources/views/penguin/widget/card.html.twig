@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        {% if penguin.image %}
+            <img src="{{ vich_uploader_asset(penguin, 'imageFile') }}" alt="{{ penguin.title }}">
+        {% endif %}
+        <div class="caption">
+            <h3>{{ penguin.title }}</h3>
+            <p>...</p>
+            <p>
+                <a href="#" class="btn btn-default" role="button">View details &raquo;</a>
+            </p>
+        </div>
+    </div>
+</div>

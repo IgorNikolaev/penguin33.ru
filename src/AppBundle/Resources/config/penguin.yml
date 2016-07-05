@@ -8,3 +8,5 @@ services:
         parent: app.repository.abstract
         arguments:
             - "%app.penguin.repository.entity%"
+        calls:
+            - [ setHomepagePenguins, [ "%app.homepage_penguins%" ] ]

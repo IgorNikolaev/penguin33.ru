@@ -21,6 +21,18 @@ class HomepageController extends Controller
      */
     public function indexAction()
     {
-        return $this->render(':homepage:index.html.twig');
+        $latestPenguins = $this->getPenguinRepository()->getForHomepageLatestBuilder()->getQuery()->getResult();
+
+        return $this->render(':homepage:index.html.twig', [
+            'latest_penguins' => $latestPenguins,
+        ]);
+    }
+
+    /**
+     * @return \AppBundle\Repository\PenguinRepository
+     */
+    private function getPenguinRepository()
+    {
+        return $this->get('app.penguin.repository');
     }
 }

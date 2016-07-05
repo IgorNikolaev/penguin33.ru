@@ -16,5 +16,33 @@ use Doctrine\ORM\EntityRepository;
  */
 class PenguinRepository extends EntityRepository
 {
+    /**
+     * @var int
+     */
+    private $homepagePenguins;
 
+    /**
+     * @param int $homepagePenguins Homepage penguins count
+     */
+    public function setHomepagePenguins($homepagePenguins)
+    {
+        $this->homepagePenguins = $homepagePenguins;
+    }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getForHomepageLatestBuilder()
+    {
+        return $this->createDefaultQueryBuilder()
+            ->setMaxResults($this->homepagePenguins);
+    }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function createDefaultQueryBuilder()
+    {
+        return $this->createQueryBuilder('o')->addOrderBy('o.addedAt', 'desc');
+    }
 }
