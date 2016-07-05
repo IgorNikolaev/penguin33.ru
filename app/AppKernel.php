@@ -1,10 +1,16 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
+/**
+ * App kernel
+ */
 class AppKernel extends Kernel
 {
+    /**
+     * {@inheritdoc}
+     */
     public function registerBundles()
     {
         $bundles = [
@@ -23,26 +29,40 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            // Third party
+            $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRootDir()
     {
         return __DIR__;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCacheDir()
     {
         return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getLogDir()
     {
         return dirname(__DIR__).'/var/logs';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
