@@ -1,0 +1,4 @@
+services:
+    app.repository.abstract:
+        abstract: true
+        factory:  [ "@doctrine", getRepository ]

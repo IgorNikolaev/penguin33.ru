@@ -1,0 +1,10 @@
+parameters:
+    app.penguin.repository.class:  AppBundle\Repository\PenguinRepository
+    app.penguin.repository.entity: AppBundle:Penguin
+
+services:
+    app.penguin.repository:
+        class:  "%app.penguin.repository.class%"
+        parent: app.repository.abstract
+        arguments:
+            - "%app.penguin.repository.entity%"
