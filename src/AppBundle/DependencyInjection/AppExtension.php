@@ -11,6 +11,7 @@ namespace AppBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
@@ -24,6 +25,8 @@ class AppExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $this->injectConfiguration($this->processConfiguration(new Configuration(), $configs), $container, $this->getAlias());
+
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         foreach ([
@@ -31,6 +34,23 @@ class AppExtension extends Extension
             'repository',
         ] as $resource) {
             $loader->load($resource.'.yml');
+        }
+    }
+
+    /**
+     * @param mixed[]                                                   $configuration Configuration
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container     DI container
+     * @param string                                                    $prefix        Parameter name prefix
+     */
+    private function injectConfiguration(array $configuration, ContainerInterface $container, $prefix)
+    {
+        foreach ($configuration as $name => $value) {
+            $prefixedName = $prefix.'.'.$name;
+            $container->setParameter($prefixedName, $value);
+
+            if (is_array($value)) {
+                $this->injectConfiguration($value, $container, $prefixedName);
+            }
         }
     }
 }

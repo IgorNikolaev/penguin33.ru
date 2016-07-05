@@ -85,3 +85,7 @@ vich_uploader:
         penguin_image:
             uri_prefix:         /images/penguins
             upload_destination: "%kernel.root_dir%/../web/images/penguins"
+
+# App
+app:
+    homepage_penguins: %homepage_penguins%
