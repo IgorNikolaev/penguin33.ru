@@ -37,6 +37,21 @@ class Penguin
     private $title;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $addedAt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->addedAt = new \DateTimeImmutable();
+    }
+
+    /**
      * @return string
      */
     public function getId()
@@ -62,5 +77,25 @@ class Penguin
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param \DateTime $addedAt addedAt
+     *
+     * @return Penguin
+     */
+    public function setAddedAt(\DateTime $addedAt)
+    {
+        $this->addedAt = $addedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getAddedAt()
+    {
+        return $this->addedAt;
     }
 }

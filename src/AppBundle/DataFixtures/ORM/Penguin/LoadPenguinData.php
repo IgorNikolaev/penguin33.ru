@@ -47,6 +47,7 @@ class LoadPenguinData implements FixtureInterface
     private function createPenguin(Generator $faker)
     {
         return (new Penguin())
+            ->setAddedAt($faker->dateTimeThisYear)
             ->setTitle($faker->sentence());
     }
 }
