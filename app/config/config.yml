@@ -78,3 +78,10 @@ assetic:
         cssrewrite: ~
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        penguin_image:
+            uri_prefix:         /images/penguins
+            upload_destination: "%kernel.root_dir%/../web/images/penguins"

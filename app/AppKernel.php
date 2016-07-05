@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Third party
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new \Vich\UploaderBundle\VichUploaderBundle(),
             // App
             new AppBundle\AppBundle(),
         ];

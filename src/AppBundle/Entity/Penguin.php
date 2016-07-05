@@ -10,12 +10,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Penguin
  *
  * @ORM\Entity
+ *
+ * @Vich\Uploadable
  */
 class Penguin
 {
@@ -32,6 +36,7 @@ class Penguin
      * @var string
      *
      * @ORM\Column(type="string")
+     *
      * @Assert\NotBlank
      */
     private $title;
@@ -44,11 +49,51 @@ class Penguin
     private $addedAt;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var \Symfony\Component\HttpFoundation\File\File
+     *
+     * @Assert\Image
+     *
+     * @Vich\UploadableField(mapping="penguin_image", fileNameProperty="image")
+     */
+    private $imageFile;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->addedAt = new \DateTimeImmutable();
+        $this->refreshUpdatedAt();
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $imageFile imageFile
+     *
+     * @return Penguin
+     */
+    public function setImageFile(File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if (!empty($imageFile)) {
+            $this->refreshUpdatedAt();
+        }
+
+        return $this;
     }
 
     /**
@@ -97,5 +142,58 @@ class Penguin
     public function getAddedAt()
     {
         return $this->addedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt updatedAt
+     *
+     * @return Penguin
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param string $image image
+     *
+     * @return Penguin
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    private function refreshUpdatedAt()
+    {
+        $this->updatedAt = new \DateTimeImmutable();
     }
 }

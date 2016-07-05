@@ -14,6 +14,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Penguin data fixture
@@ -46,8 +47,11 @@ class LoadPenguinData implements FixtureInterface
      */
     private function createPenguin(Generator $faker)
     {
+        $image = $faker->boolean() ? $faker->image() : null;
+
         return (new Penguin())
             ->setAddedAt($faker->dateTimeThisYear)
+            ->setImageFile(!empty($image) ? new UploadedFile($image, $image, null, null, null, true) : null)
             ->setTitle($faker->sentence());
     }
 }
