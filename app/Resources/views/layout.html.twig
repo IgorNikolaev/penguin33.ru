@@ -2,8 +2,8 @@
 
 {% block stylesheets %}
     {% stylesheets
-        'assets/styles/vendor/bootstrap.css'
-        'assets/styles/vendor/bootstrap-theme.css'
+        'assets/vendor/bootstrap/dist/css/bootstrap.css'
+        'assets/vendor/bootstrap/dist/css/bootstrap-theme.css'
         'assets/styles/app.css'
         filter='?cssembed'
         filter='cssrewrite'
@@ -52,8 +52,8 @@
 
 {% block javascripts %}
     {% javascripts
-        'assets/scripts/vendor/jquery.js'
-        'assets/scripts/vendor/bootstrap.js'
+        'assets/vendor/jquery/dist/jquery.js'
+        'assets/vendor/bootstrap/dist/js/bootstrap.js'
         filter='?closure'
         output='assets/compiled/app.js'
     %}

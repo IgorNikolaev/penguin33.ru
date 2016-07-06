@@ -1,0 +1,11 @@
+{
+  "name": "igor/penguin33.ru",
+  "homepage": "https://github.com/IgorNikolaev/penguin33.ru",
+  "authors": [
+    "Igor Nikolaev <igor.sv.n@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

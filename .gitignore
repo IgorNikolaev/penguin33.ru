@@ -18,3 +18,5 @@
 /.idea/
 /web/assets/compiled/*
 !web/assets/compiled/.gitkeep
+/web/assets/vendor/*
+!web/assets/vendor/.gitkeep
