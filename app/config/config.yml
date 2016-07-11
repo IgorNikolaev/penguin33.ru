@@ -6,11 +6,11 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: ru
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -83,6 +83,11 @@ easy_admin:
     entities:
         - AppBundle\Entity\Penguin
 
+fos_user:
+    db_driver:     orm
+    firewall_name: admin
+    user_class:    AppBundle\Entity\User
+
 liip_imagine:
     filter_sets:
         penguin_thumb:
@@ -105,4 +110,4 @@ vich_uploader:
 
 # App
 app:
-    homepage_penguins: %homepage_penguins%
+    homepage_penguins: "%homepage_penguins%"
