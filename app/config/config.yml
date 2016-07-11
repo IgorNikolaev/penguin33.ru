@@ -79,6 +79,10 @@ assetic:
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
 
+easy_admin:
+    entities:
+        - AppBundle\Entity\Penguin
+
 liip_imagine:
     filter_sets:
         penguin_thumb:
