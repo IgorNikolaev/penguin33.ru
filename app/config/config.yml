@@ -80,9 +80,17 @@ assetic:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
 
 easy_admin:
+    design:
+        form_theme: [ horizontal, VichUploaderBundle:Form:fields.html.twig ]
     entities:
-        - AppBundle\Entity\Penguin
-        - AppBundle\Entity\User
+        Penguin:
+            class: AppBundle\Entity\Penguin
+            form:
+                fields:
+                    - { property: title,     type: text }
+                    - { property: imageFile, type: vich_image }
+        User:
+            class: AppBundle\Entity\User
 
 fos_user:
     db_driver:     orm
